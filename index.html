@@ -90,13 +90,70 @@ tr.group td{background:var(--bg-soft);font-weight:700;font-size:12.5px;color:var
 tr.ours td{background:#f0fdf4;font-weight:600}
 tr.ours td:first-child{color:#047857}
 td.best{font-weight:700;color:#047857}
-.bibtex{background:#0f1420;color:#dbe3f0;border-radius:var(--radius);padding:22px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow-x:auto;position:relative;white-space:pre}
-.copybtn{position:absolute;top:12px;right:12px;background:#273046;color:#dbe3f0;border:none;border-radius:8px;padding:6px 14px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer}
-.copybtn:hover{background:#33405c}
+.bib-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.bib-head h2{margin-bottom:0}
+.bibtex{background:#f1f5f9;color:#1e293b;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.7;overflow-x:auto;white-space:pre;box-shadow:0 1px 2px 0 rgb(0 0 0/.05)}
+.copybtn{background:#2563eb;color:#fff;border:none;border-radius:12px;padding:.75rem 1rem;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;gap:.5rem}
+.copybtn:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 4px 6px -1px rgb(0 0 0/.1)}
+.copybtn.copied{background:#10b981}
+.more-works-container{position:fixed;top:2rem;right:2rem;z-index:1000}
+.more-works-btn{background:#fff;color:#1e293b;border:2px solid #e2e8f0;border-radius:16px;padding:.75rem 1.25rem;font-weight:600;font-size:.9rem;box-shadow:0 4px 6px -1px rgb(0 0 0/.1);transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;font-family:inherit}
+.more-works-btn:hover{transform:translateY(-2px);box-shadow:0 10px 15px -3px rgb(0 0 0/.1);background:#f8fafc;border-color:#2563eb}
+.more-works-btn .dropdown-arrow{transition:all .3s cubic-bezier(.4,0,.2,1);font-size:.8rem}
+.more-works-btn.active .dropdown-arrow{transform:rotate(180deg)}
+.more-works-dropdown{position:absolute;top:calc(100% + .5rem);right:0;width:400px;max-width:90vw;background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 20px 25px -5px rgb(0 0 0/.1),0 8px 10px -6px rgb(0 0 0/.1);opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .3s cubic-bezier(.4,0,.2,1);max-height:70vh;overflow-y:auto}
+.more-works-dropdown.show{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 1.5rem 1rem;border-bottom:1px solid #e2e8f0}
+.dropdown-header h4{margin:0;font-size:1.1rem;font-weight:700;color:#1e293b}
+.dropdown-header .close-btn{background:none;border:none;font-size:1.1rem;color:#94a3b8;cursor:pointer;line-height:1}
+.works-list{padding:1rem}
+.work-item{display:flex;align-items:flex-start;justify-content:space-between;padding:1rem;border-radius:12px;text-decoration:none;color:inherit;transition:all .3s cubic-bezier(.4,0,.2,1);margin-bottom:.5rem}
+.work-item:hover{background:#f1f5f9;transform:translateX(4px);text-decoration:none}
+.work-info h5{margin:0 0 .5rem 0;font-size:1rem;font-weight:500;color:#1e293b}
+.work-info p{margin:0 0 .5rem 0;font-size:.9rem;color:#64748b;line-height:1.4}
+.work-venue{font-size:.8rem;color:#94a3b8;font-style:italic}
+.work-item .ext{color:#94a3b8;font-size:.9rem;margin-top:.2rem;flex-shrink:0;margin-left:.75rem}
+@media(max-width:768px){.more-works-container{top:auto;bottom:2rem;left:1rem;right:auto}.more-works-btn{padding:.6rem 1rem;font-size:.8rem}.more-works-dropdown{top:auto;bottom:calc(100% + .5rem);left:0;right:auto;width:calc(100vw - 2rem)}}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px;text-align:center}
 </style>
 </head>
 <body>
+
+<div class="more-works-container">
+  <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works">&#129514; More Works <span class="dropdown-arrow">&#9662;</span></button>
+  <div class="more-works-dropdown" id="moreWorksDropdown">
+    <div class="dropdown-header">
+      <h4>More Works from the Authors</h4>
+      <button class="close-btn" onclick="toggleMoreWorks()">&#10005;</button>
+    </div>
+    <div class="works-list">
+      <a href="https://arxiv.org/abs/2411.16173" class="work-item" target="_blank" rel="noopener">
+        <div class="work-info">
+          <h5>SaLoVA</h5>
+          <p>Segment-Augmented Long Video Assistant for Targeted Retrieval and Routing in Long-Form Video Analysis.</p>
+          <span class="work-venue">CVPR 2025</span>
+        </div>
+        <span class="ext">&#8599;</span>
+      </a>
+      <a href="https://arxiv.org/abs/2411.19460" class="work-item" target="_blank" rel="noopener">
+        <div class="work-info">
+          <h5>Video-Ma<sup>2</sup>mba</h5>
+          <p>Mamba-2-based architecture for efficient long-form video understanding with multi-axis gradient checkpointing.</p>
+          <span class="work-venue">arXiv 2024</span>
+        </div>
+        <span class="ext">&#8599;</span>
+      </a>
+      <a href="https://arxiv.org/abs/2506.01274" class="work-item" target="_blank" rel="noopener">
+        <div class="work-info">
+          <h5>ReFoCUS</h5>
+          <p>Reinforcement-guided frame selection policy that optimizes which video frames are fed to a Video-LLM for improved reasoning.</p>
+          <span class="work-venue">CVPR 2026 Findings</span>
+        </div>
+        <span class="ext">&#8599;</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 <header class="hero">
   <div class="wrap">
@@ -121,7 +178,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
     </div>
     <div class="btns">
       <a class="btn" href="https://arxiv.org/abs/2605.15764" target="_blank" rel="noopener">&#128196; arXiv</a>
-      <a class="btn" href="https://github.com/Social-Reaoning/social-reasoning" target="_blank" rel="noopener">&#128187; Code</a>
+      <a class="btn" href="https://github.com/Social-Reaoning/grasp" target="_blank" rel="noopener">&#128187; Code</a>
       <a class="btn soft" href="https://huggingface.co/papers/2605.15764" target="_blank" rel="noopener">&#129303; HF Paper</a>
       <span class="btn disabled">&#128230; Dataset (coming soon)</span>
     </div>
@@ -224,8 +281,11 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 
 <section style="padding-top:8px">
   <div class="wrap narrow">
-    <h2>BibTeX</h2>
-    <div class="bibtex" id="bib"><button class="copybtn" onclick="copyBib(this)">Copy</button>@article{kim2026grasp,
+    <div class="bib-head">
+      <h2>BibTeX</h2>
+      <button class="copybtn" onclick="copyBib(this)">&#128203; <span>Copy</span></button>
+    </div>
+    <div class="bibtex" id="bib">@article{kim2026grasp,
   title={GRASP: Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions},
   author={Kim, Junho and Cao, Xu and Yang, Houze and Boote, Bikram and Jojic, Ana and Ryan, Fiona and Lai, Bolin and Lee, Sangmin and Rehg, James M},
   journal={arXiv preprint arXiv:2605.15764},
@@ -277,9 +337,23 @@ document.getElementById('tabs').addEventListener('click',e=>{
   render(e.target.dataset.f);
 });
 function copyBib(btn){
-  const txt=document.getElementById('bib').innerText.replace(/^Copy\n?/,'');
-  navigator.clipboard.writeText(txt).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1500);});
+  const txt=document.getElementById('bib').innerText;
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.classList.add('copied');btn.querySelector('span').textContent='Copied!';
+    setTimeout(()=>{btn.classList.remove('copied');btn.querySelector('span').textContent='Copy';},1500);
+  });
 }
+function toggleMoreWorks(){
+  document.getElementById('moreWorksDropdown').classList.toggle('show');
+  document.querySelector('.more-works-btn').classList.toggle('active');
+}
+document.addEventListener('click',e=>{
+  const c=document.querySelector('.more-works-container');
+  if(!c.contains(e.target)){
+    document.getElementById('moreWorksDropdown').classList.remove('show');
+    document.querySelector('.more-works-btn').classList.remove('active');
+  }
+});
 </script>
 </body>
 </html>
