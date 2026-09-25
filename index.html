@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRASP: Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions</title>
+<meta name="description" content="GRASP is a large-scale social reasoning dataset connecting high-level social QA with fine-grained gaze and deictic gesture events — 290K QA pairs over 46K videos (749 hours), with a 16-category taxonomy and GRASP-Bench. We propose Social Grounding Reward (SGR) for participant-grounded reasoning. NeurIPS 2026.">
+<meta property="og:title" content="GRASP: Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions">
+<meta property="og:description" content="290K social QA pairs over 46K videos grounded in gaze & gesture events + Social Grounding Reward (SGR). NeurIPS 2026.">
+<meta property="og:image" content="https://social-reaoning.github.io/grasp/static/images/Fig1.png">
+<meta property="og:url" content="https://social-reaoning.github.io/grasp/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1f2b; --muted:#5b6472; --line:#e5e8ee; --bg:#ffffff; --bg-soft:#f6f8fb;
+  --accent:#2456d6; --accent-soft:#e8eefc;
+  --gaze:#2563eb; --gesture:#059669; --joint:#d97706;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:16.5px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+.narrow{max-width:820px;margin:0 auto}
+section{padding:44px 0}
+h1{font-size:clamp(26px,4.2vw,40px);font-weight:700;line-height:1.25;letter-spacing:-.01em}
+h2{font-size:clamp(21px,3vw,27px);font-weight:700;margin-bottom:18px;letter-spacing:-.01em}
+p{margin-bottom:14px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.hero{padding:56px 0 36px;text-align:center;background:linear-gradient(180deg,var(--bg-soft) 0%,var(--bg) 100%)}
+.venue-badge{display:inline-block;background:#5b21b6;color:#fff;font-weight:700;font-size:14px;padding:5px 16px;border-radius:999px;margin-bottom:18px;letter-spacing:.03em}
+.title-acro{color:var(--accent)}
+.authors{margin-top:20px;font-size:17px;line-height:1.9}
+.authors span.au{white-space:nowrap;margin:0 7px}
+sup{font-size:11px;color:var(--muted)}
+.affils{margin-top:8px;color:var(--muted);font-size:14.5px}
+.affils span{white-space:nowrap;margin:0 8px}
+.note{margin-top:6px;color:var(--muted);font-size:13.5px}
+.btns{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:9px 20px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .12s ease,background .12s ease}
+.btn:hover{background:#000;text-decoration:none;transform:translateY(-1px)}
+.btn.soft{background:var(--accent-soft);color:var(--accent)}
+.btn.soft:hover{background:#dbe6fb}
+.btn.disabled{background:var(--bg-soft);color:var(--muted);cursor:default;border:1px solid var(--line)}
+.btn.disabled:hover{transform:none}
+.teaser{padding:34px 0 8px}
+.figure{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:0 8px 28px rgba(20,30,60,.06)}
+.figure img{width:100%;height:auto;display:block;border-radius:8px}
+.caption{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.55}
+.caption b{color:var(--ink)}
+.abstract{background:var(--bg-soft)}
+.abstract p{font-size:16.5px;text-align:justify}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:26px 0 8px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 12px;text-align:center}
+.stat .num{font-size:26px;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+.stat .lbl{font-size:13px;color:var(--muted);margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 22px}
+.tab{border:1.5px solid var(--line);background:#fff;color:var(--muted);padding:7px 18px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.tab.active{border-color:var(--ink);background:var(--ink);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 16px rgba(20,30,60,.05)}
+.card video{width:100%;aspect-ratio:16/9;background:#0b0e14;display:block}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.badges{display:flex;gap:6px;align-items:center}
+.badge{font-size:11.5px;font-weight:700;padding:2.5px 10px;border-radius:999px;color:#fff;letter-spacing:.02em}
+.badge.gaze{background:var(--gaze)}.badge.gesture{background:var(--gesture)}.badge.joint{background:var(--joint)}
+.badge.diff{background:transparent;color:var(--muted);border:1px solid var(--line);font-weight:600}
+.q{font-size:14.5px;font-weight:600;line-height:1.5}
+.opts{font-size:13.5px;color:var(--muted);line-height:1.6}
+.opts div.correct{color:#047857;font-weight:700}
+.reveal{align-self:flex-start;margin-top:auto;border:1.5px solid var(--line);background:var(--bg-soft);color:var(--ink);font-family:inherit;font-weight:600;font-size:13px;padding:6px 14px;border-radius:8px;cursor:pointer}
+.reveal:hover{background:#eef1f7}
+.method{background:var(--bg-soft)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius)}
+th,td{padding:9px 14px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--bg-soft);font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+td:first-child,th:first-child{text-align:left}
+tr.group td{background:var(--bg-soft);font-weight:700;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+tr.ours td{background:#f0fdf4;font-weight:600}
+tr.ours td:first-child{color:#047857}
+td.best{font-weight:700;color:#047857}
+.bibtex{background:#0f1420;color:#dbe3f0;border-radius:var(--radius);padding:22px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow-x:auto;position:relative;white-space:pre}
+.copybtn{position:absolute;top:12px;right:12px;background:#273046;color:#dbe3f0;border:none;border-radius:8px;padding:6px 14px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.copybtn:hover{background:#33405c}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap narrow">
+    <div class="venue-badge">NeurIPS 2026</div>
+    <h1><span class="title-acro">GRASP</span>: Learning to Ground Social Reasoning in Multi&#8209;Person Non&#8209;Verbal Interactions</h1>
+    <div class="authors">
+      <span class="au">Junho Kim<sup>1</sup></span>
+      <span class="au">Xu Cao<sup>1</sup></span>
+      <span class="au">Houze Yang<sup>1</sup></span>
+      <span class="au">Bikram Boote<sup>1</sup></span>
+      <span class="au">Ana Jojic<sup>1</sup></span>
+      <span class="au">Fiona Ryan<sup>2</sup></span>
+      <span class="au">Bolin Lai<sup>3</sup></span>
+      <span class="au">Sangmin Lee<sup>4</sup></span>
+      <span class="au">James M. Rehg<sup>1&dagger;</sup></span>
+    </div>
+    <div class="affils">
+      <span><sup>1</sup>University of Illinois Urbana-Champaign</span>
+      <span><sup>2</sup>Georgia Institute of Technology</span>
+      <span><sup>3</sup>Amazon AGI</span>
+      <span><sup>4</sup>Korea University</span>
+    </div>
+    <div class="note"><sup>&dagger;</sup>Corresponding author</div>
+    <div class="btns">
+      <a class="btn" href="https://arxiv.org/abs/2605.15764" target="_blank" rel="noopener">&#128196; arXiv</a>
+      <a class="btn" href="https://arxiv.org/pdf/2605.15764" target="_blank" rel="noopener">&#128462; PDF</a>
+      <a class="btn" href="https://github.com/Social-Reaoning/social-reasoning" target="_blank" rel="noopener">&#128187; Code</a>
+      <a class="btn soft" href="https://huggingface.co/papers/2605.15764" target="_blank" rel="noopener">&#129303; HF Paper</a>
+      <span class="btn disabled">&#128230; Dataset (coming soon)</span>
+    </div>
+  </div>
+</header>
+
+<section class="teaser">
+  <div class="wrap">
+    <div class="figure">
+      <img src="static/images/Fig1.png" alt="GRASP teaser: grounding social reasoning in the correct participants over time">
+      <div class="caption"><b>Multi-person social reasoning requires grounding subtle non-verbal cues in the correct participants over time.</b> Existing MLLMs often take spurious scene-level shortcuts, whereas ours leverages evidence-aware supervision to reason from the relevant social event.</div>
+    </div>
+  </div>
+</section>
+
+<section class="abstract">
+  <div class="wrap narrow">
+    <h2>Abstract</h2>
+    <p>Understanding social interactions requires reasoning over subtle non-verbal cues, yet current multimodal large language models (MLLMs) often fail to identify <i>who interacts with whom</i> in multi-person videos. We introduce <b>GRASP</b>, a large-scale social reasoning dataset that connects high-level social QA with fine-grained gaze and deictic gesture events. GRASP contains 290K question&ndash;answer pairs over 46K videos totaling 749 hours, organized by a 16-category taxonomy spanning gaze, gesture, and joint gaze&ndash;gesture reasoning, together with <b>GRASP-Bench</b> for evaluation. Unlike prior resources that focus on either isolated cues or high-level social QA, GRASP builds questions from identity-consistent gaze trajectories, deictic gestures, and their joint compositions into social events. Moreover, we propose <b>Social Grounding Reward (SGR)</b>, a learning signal that uses these social events to encourage models to reason about the participants involved in each interaction. Experiments show that SGR improves performance on GRASP-Bench while maintaining zero-shot performance on related social video QA benchmarks.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The GRASP Dataset</h2>
+    <p class="narrow" style="max-width:none">GRASP converts multi-person videos into <b>person-consistent gaze and gesture events</b>, composes them into structured social QA pairs, and applies subset validation with human feedback for quality control. Questions are built from identity-consistent gaze trajectories, deictic gestures, and their joint compositions into social events &mdash; not from scene-level captions.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">290K</div><div class="lbl">QA pairs</div></div>
+      <div class="stat"><div class="num">46K</div><div class="lbl">videos</div></div>
+      <div class="stat"><div class="num">749h</div><div class="lbl">total footage</div></div>
+      <div class="stat"><div class="num">215K</div><div class="lbl">gaze events</div></div>
+      <div class="stat"><div class="num">88K</div><div class="lbl">deictic gestures</div></div>
+      <div class="stat"><div class="num">16</div><div class="lbl">QA categories</div></div>
+    </div>
+    <div class="figure" style="margin-top:18px">
+      <img src="static/images/Fig2.png" alt="GRASP construction pipeline" loading="lazy">
+      <div class="caption"><b>GRASP construction pipeline.</b> Multi-person videos are converted into person-consistent gaze and gesture events, composed into structured social QA pairs, with subset validation and human feedback for quality control.</div>
+    </div>
+    <div class="grid2" style="margin-top:22px">
+      <div class="figure">
+        <img src="static/images/Fig3.png" alt="GRASP taxonomy and statistics" loading="lazy">
+        <div class="caption"><b>Taxonomy &amp; statistics.</b> 16 categories across three reasoning types: Gaze (T1&ndash;T6), Gesture (G1&ndash;G6), and Joint gaze&ndash;gesture (J1&ndash;J4), spanning easy/medium/hard difficulty.</div>
+      </div>
+      <div class="figure">
+        <img src="static/images/Fig4.png" alt="Per-category comparison on GRASP-Bench" loading="lazy">
+        <div class="caption"><b>Per-category comparison on GRASP-Bench</b> across SFT, reasoning, GRPO-tuned baselines, and ours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <h2>Explore GRASP-Bench</h2>
+    <p>One representative example per category. Play the clip, then reveal the answer. Overlaid boxes show person-consistent identities used to ground each question.</p>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-f="all">All (16)</button>
+      <button class="tab" data-f="T">&#128064; Gaze &middot; T1&ndash;T6</button>
+      <button class="tab" data-f="G">&#9995; Gesture &middot; G1&ndash;G6</button>
+      <button class="tab" data-f="J">&#128279; Joint &middot; J1&ndash;J4</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section class="method">
+  <div class="wrap narrow">
+    <h2>Social Grounding Reward (SGR)</h2>
+    <p>Standard outcome-only RL rewards let models guess the right option while attending to the wrong people. <b>SGR</b> is a participant-level learning signal built directly on GRASP's structured social events: during GRPO post-training, the model is rewarded for reasoning about the <b>correct participants</b> involved in each gaze or gesture interaction, not just for the final answer.</p>
+    <p>Because every GRASP question is generated from an underlying social event graph, the ground-truth participants are known for free &mdash; the dataset and the reward are <b>coupled by design</b>. SGR-trained models improve substantially on GRASP-Bench while maintaining zero-shot performance on related social video QA benchmarks (MMSI, Online-MMSI, TVQA+), showing that grounded social reasoning does not come at the cost of general video QA ability.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Results on GRASP-Bench</h2>
+    <p>Accuracy (%) grouped by reasoning type. With SGR, open 8&ndash;9B models surpass the strongest proprietary model evaluated (Gemini 3.1 Pro). Full 16-category results are in the paper.</p>
+    <div class="tblwrap">
+    <table>
+      <thead><tr><th>Method</th><th>Gaze</th><th>Gesture</th><th>Joint</th><th>Overall</th></tr></thead>
+      <tbody>
+        <tr class="group"><td colspan="5">Proprietary</td></tr>
+        <tr><td>Claude Sonnet 4.6</td><td>30.2</td><td>46.5</td><td>37.3</td><td>37.0</td></tr>
+        <tr><td>GPT-5.4</td><td>34.9</td><td>60.4</td><td>39.0</td><td>43.9</td></tr>
+        <tr><td>Gemini 3.1 Pro</td><td>41.8</td><td>67.6</td><td>44.3</td><td>50.5</td></tr>
+        <tr class="group"><td colspan="5">Open-source (SFT / instruct)</td></tr>
+        <tr><td>Qwen3-VL-8B-Instruct</td><td>28.3</td><td>52.7</td><td>38.0</td><td>38.3</td></tr>
+        <tr><td>Qwen3.5-9B (Instruct)</td><td>32.8</td><td>59.0</td><td>40.8</td><td>43.0</td></tr>
+        <tr class="group"><td colspan="5">Open-source (RL post-trained)</td></tr>
+        <tr><td>Video-R1-7B</td><td>37.1</td><td>34.8</td><td>36.6</td><td>36.3</td></tr>
+        <tr><td>Qwen3-VL-8B-Thinking</td><td>28.1</td><td>48.4</td><td>38.0</td><td>36.9</td></tr>
+        <tr class="group"><td colspan="5">Socially-grounded RL (ours)</td></tr>
+        <tr class="ours"><td>Qwen3-VL-8B + SGR</td><td>46.3</td><td>58.0</td><td class="best">48.1</td><td>50.4</td></tr>
+        <tr class="ours"><td>Qwen3.5-9B + SGR</td><td class="best">48.0</td><td>64.4</td><td>45.6</td><td class="best">52.6</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="caption" style="margin-top:10px">Group columns are count-weighted category averages from Table&nbsp;1 of the paper. SGR also transfers zero-shot: it preserves or improves accuracy on MMSI, Online-MMSI, and TVQA+ (Table&nbsp;2).</div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap narrow">
+    <h2>BibTeX</h2>
+    <div class="bibtex" id="bib"><button class="copybtn" onclick="copyBib(this)">Copy</button>@inproceedings{kim2026grasp,
+  title     = {{GRASP}: Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions},
+  author    = {Kim, Junho and Cao, Xu and Yang, Houze and Boote, Bikram and Jojic, Ana and Ryan, Fiona and Lai, Bolin and Lee, Sangmin and Rehg, James M.},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026}
+}</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    GRASP &middot; NeurIPS 2026 &middot; <a href="https://arxiv.org/abs/2605.15764" target="_blank" rel="noopener">arXiv:2605.15764</a><br>
+    Questions? Contact <a href="mailto:arkimjh@illinois.edu">Junho Kim</a>.
+  </div>
+</footer>
+
+<script>
+const MOD = c => c[0]==='T' ? 'gaze' : c[0]==='G' ? 'gesture' : 'joint';
+const MODLBL = {gaze:'Gaze', gesture:'Gesture', joint:'Joint'};
+const NAMES = {T1:'Gaze Target ID',T2:'Gaze Event Classification',T3:'Mutual Gaze',T4:'Gaze Following',T5:'Temporal Gaze Reasoning',T6:'Group Attention',G1:'Gesture Recognition',G2:'Gesture Type',G3:'Gesture Temporal',G4:'Reciprocal Gesture',G5:'Gesture Frequency',G6:'Gesture Sequence',J1:'Gaze–Gesture Alignment',J2:'Eye Contact in Interaction',J3:'Gaze Response to Gesture',J4:'Cross-Modal Dynamics'};
+let EX = [];
+fetch('static/examples.json').then(r=>r.json()).then(d=>{EX=d;render('all');});
+function esc(s){const t=document.createElement('span');t.textContent=s;return t.innerHTML;}
+function render(f){
+  const el=document.getElementById('cards');
+  el.innerHTML='';
+  EX.filter(e=>f==='all'||e.cat[0]===f).forEach(e=>{
+    const m=MOD(e.cat);
+    const card=document.createElement('div');card.className='card';
+    card.innerHTML=`<video src="static/videos/${e.video}" controls muted playsinline preload="metadata" loop></video>
+      <div class="body">
+        <div class="badges"><span class="badge ${m}">${e.cat} · ${NAMES[e.cat]||''}</span><span class="badge diff">${e.difficulty}</span></div>
+        <div class="q">${esc(e.question)}</div>
+        <div class="opts">${e.options.map(o=>`<div data-k="${esc(o[0])}">${esc(o)}</div>`).join('')}</div>
+        <button class="reveal">Show answer</button>
+      </div>`;
+    card.querySelector('.reveal').addEventListener('click',ev=>{
+      const b=ev.target;
+      card.querySelectorAll('.opts div').forEach(d=>{ if(d.dataset.k===e.answer) d.classList.add('correct'); });
+      b.textContent='Answer: '+e.answer+(e.answer_text?' — '+e.answer_text:'');
+      b.disabled=true;b.style.color='#047857';b.style.borderColor='#a7f3d0';b.style.background='#f0fdf4';
+    });
+    el.appendChild(card);
+  });
+}
+document.getElementById('tabs').addEventListener('click',e=>{
+  if(!e.target.classList.contains('tab'))return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  e.target.classList.add('active');
+  render(e.target.dataset.f);
+});
+function copyBib(btn){
+  const txt=document.getElementById('bib').innerText.replace(/^Copy\n?/,'');
+  navigator.clipboard.writeText(txt).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1500);});
+}
+</script>
+</body>
+</html>
