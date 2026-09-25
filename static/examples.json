@@ -2,108 +2,108 @@
  {
   "cat": "T1",
   "video": "T1_example.mp4",
-  "question": "At 2.0s, who is Person 0 looking at?",
+  "question": "Who is Person 1 looking at between 1.5s and 3.0s?",
   "options": [
-   "A) No one",
-   "B) Person 1",
-   "C) Person 3",
-   "D) The camera"
+   "A) Person 2",
+   "B) Person 4",
+   "C) Person 1",
+   "D) Person 0"
   ],
   "answer": "B",
-  "answer_text": "Person 1",
+  "answer_text": "Person 4",
   "difficulty": "easy"
  },
  {
   "cat": "T2",
   "video": "T2_example.mp4",
-  "question": "What occurs regarding Person 4 between 2.0 and 2.5 seconds?",
+  "question": "What best describes the action of Person 2 between 2.5 and 3.0 seconds?",
   "options": [
-   "A) Person 4 follows Person 1's gaze",
-   "B) Person 4 quickly changes gaze direction",
-   "C) Person 4 looks at the same thing as Person 3",
-   "D) Person 4 makes eye contact with Person 3"
+   "A) Looking at the same thing",
+   "B) Quickly changes gaze direction",
+   "C) Looking at each other",
+   "D) Following someone's gaze"
   ],
-  "answer": "C",
-  "answer_text": "Person 4 looks at the same thing as Person 3",
+  "answer": "B",
+  "answer_text": "Quickly changes gaze direction",
   "difficulty": "easy"
  },
  {
   "cat": "T3",
   "video": "T3_example.mp4",
-  "question": "How long do Person 3 and Person 4 maintain eye contact starting at 1.5s?",
+  "question": "How long do Person 0 and Person 3 maintain eye contact during their interaction between 1.0 and 2.5 seconds?",
   "options": [
-   "A) 2.0 seconds",
-   "B) 1.0 seconds",
-   "C) 4.0 seconds",
-   "D) 3.0 seconds"
+   "A) 0.5 seconds",
+   "B) 2.0 seconds",
+   "C) 1.5 seconds",
+   "D) 1.0 seconds"
   ],
-  "answer": "A",
-  "answer_text": "2.0 seconds",
+  "answer": "C",
+  "answer_text": "1.5 seconds",
   "difficulty": "medium"
  },
  {
   "cat": "T4",
   "video": "T4_example.mp4",
-  "question": "Which pair of people makes eye contact between 1.5s and 3.5s?",
+  "question": "Which pair of people makes eye contact between 2.0 and 4.5 seconds?",
   "options": [
-   "A) Person 1 and Person 2",
-   "B) Person 2 and Person 3",
-   "C) Person 3 and Person 4",
-   "D) Person 0 and Person 1"
+   "A) Person 0 and Person 3",
+   "B) Person 2 and Person 4",
+   "C) Person 1 and Person 2",
+   "D) Person 0 and Person 6"
   ],
-  "answer": "B",
-  "answer_text": "Person 2 and Person 3",
+  "answer": "A",
+  "answer_text": "Person 0 and Person 3",
   "difficulty": "medium"
  },
  {
   "cat": "T5",
   "video": "T5_example.mp4",
-  "question": "Between 2.0s and 4.0s, who follows whose gaze?",
+  "question": "During the gaze following interaction between Person 5 and Person 4 from 2.5s to 4.0s, who looks first?",
   "options": [
-   "A) Person 6 follows Person 3's gaze",
-   "B) Person 3 follows Person 6's gaze",
-   "C) Person 3 follows Person 2's gaze",
-   "D) Person 2 follows Person 3's gaze"
+   "A) Person 4",
+   "B) They look at the exact same time",
+   "C) Person 5",
+   "D) Person 0"
   ],
   "answer": "C",
-  "answer_text": "Person 3 follows Person 2's gaze",
+  "answer_text": "B) Person 5",
   "difficulty": "hard"
  },
  {
   "cat": "T6",
   "video": "T6_example.mp4",
-  "question": "How many people suddenly shift their gaze at exactly 2.0 seconds?",
+  "question": "Which people are involved when everyone suddenly shifts gaze at 2.0 seconds?",
   "options": [
-   "A) Three people",
-   "B) Two people",
-   "C) Four people",
-   "D) One person"
+   "A) Only Person 0 and Person 2",
+   "B) Only Person 0 and Person 1",
+   "C) Person 1, Person 2, and Person 3",
+   "D) Only Person 1 and Person 2"
   ],
-  "answer": "A",
-  "answer_text": "Three people",
+  "answer": "C",
+  "answer_text": "Person 1, Person 2, and Person 3",
   "difficulty": "hard"
  },
  {
   "cat": "G1",
   "video": "G1_example.mp4",
-  "question": "At 1.0 to 2.0 seconds, who is Person 1 pointing at?",
+  "question": "Which person points at Person 1 between 1.0 and 2.5 seconds?",
   "options": [
-   "A) Person 4",
-   "B) Person 3",
-   "C) Person 0",
-   "D) Person 2"
+   "A) Person 3",
+   "B) No one",
+   "C) Person 2",
+   "D) Person 0"
   ],
-  "answer": "A",
-  "answer_text": "Person 4",
+  "answer": "C",
+  "answer_text": "Person 2",
   "difficulty": "easy"
  },
  {
   "cat": "G2",
   "video": "G2_example.mp4",
-  "question": "What type of gesture does Person 3 perform at 2.0 seconds?",
+  "question": "What type of gesture does Person 3 perform between 1.0 and 5.0 seconds?",
   "options": [
-   "A) Reaching",
-   "B) Giving",
+   "A) Giving",
+   "B) Reaching",
    "C) Pointing",
    "D) Showing"
   ],
@@ -114,113 +114,113 @@
  {
   "cat": "G3",
   "video": "G3_example.mp4",
-  "question": "Between 1.5 and 4.0 seconds, which gesture starts first?",
+  "question": "How long does the gesture performed by Person 0 starting at 2.5 seconds last?",
   "options": [
-   "A) Person 0 pointing towards Person 1 and Person 3",
-   "B) Person 3 pointing at Person 0",
-   "C) Neither person performs a pointing gesture",
-   "D) Both gestures start at the exact same time"
+   "A) 2.0 seconds",
+   "B) 1.5 seconds",
+   "C) 4.5 seconds",
+   "D) 3.0 seconds"
   ],
   "answer": "D",
-  "answer_text": "Both gestures start at the exact same time",
+  "answer_text": "3.0 seconds",
   "difficulty": "medium"
  },
  {
   "cat": "G4",
   "video": "G4_example.mp4",
-  "question": "Between 1.5 and 4.5 seconds, who initiates the most pointing gestures?",
+  "question": "How many different people perform a pointing gesture in this video clip (between 2.0s and 6.5s)?",
   "options": [
-   "A) Person 0",
-   "B) Person 2",
-   "C) Person 3",
-   "D) Person 1"
+   "A) One",
+   "B) Four",
+   "C) Two",
+   "D) Three"
   ],
-  "answer": "A",
-  "answer_text": "Person 0",
+  "answer": "C",
+  "answer_text": "Two",
   "difficulty": "medium"
  },
  {
   "cat": "G5",
   "video": "G5_example.mp4",
-  "question": "After Person 4 points at Person 1 between 1.0 and 5.0 seconds, who does Person 0 point at next?",
+  "question": "While Person 1 points at Person 0 between 2.5 and 4.5 seconds, what is Person 2 doing concurrently?",
   "options": [
-   "A) Person 3",
-   "B) Person 2",
-   "C) Person 4",
-   "D) Person 0"
+   "A) Pointing at Person 1",
+   "B) Pointing at an object",
+   "C) Pointing at Person 0",
+   "D) Pointing at Person 3"
   ],
-  "answer": "C",
-  "answer_text": "Person 4",
+  "answer": "B",
+  "answer_text": "Pointing at an object",
   "difficulty": "hard"
  },
  {
   "cat": "G6",
   "video": "G6_example.mp4",
-  "question": "While Person 1 points at Person 0 starting at 3.0 seconds, who does Person 2 point at?",
+  "question": "Between 2.5 and 5.0 seconds, Person 1 points at Person 0. Does Person 0 gesture back?",
   "options": [
-   "A) Person 4",
-   "B) Person 0",
-   "C) Person 3",
-   "D) Person 1"
+   "A) Yes, Person 0 gives an object to Person 1",
+   "B) Yes, Person 0 points exclusively at Person 2",
+   "C) Yes, Person 0 points towards Person 1 and Person 3",
+   "D) No, Person 0 makes no gestures"
   ],
-  "answer": "B",
-  "answer_text": "Person 0",
+  "answer": "C",
+  "answer_text": "Yes, Person 0 points towards Person 1 and Person 3",
   "difficulty": "hard"
  },
  {
   "cat": "J1",
   "video": "J1_example.mp4",
-  "question": "During Person 5's pointing gesture between 2.0s and 4.0s, who has a sudden gaze shift?",
+  "question": "Between 2.0s and 4.5s, does Person 0 point at Person 4 before or after Person 4 follows Person 0's gaze?",
   "options": [
-   "A) Person 3",
-   "B) Person 2",
-   "C) Person 5",
-   "D) Person 0"
+   "A) Person 0 points after Person 4 follows their gaze",
+   "B) Person 0 points before Person 4 follows their gaze",
+   "C) They start at the exact same time",
+   "D) Person 0 points at Person 1 instead"
   ],
-  "answer": "A",
-  "answer_text": "Person 3",
+  "answer": "B",
+  "answer_text": "Person 0 points before Person 2 follows their gaze",
   "difficulty": "medium"
  },
  {
   "cat": "J2",
   "video": "J2_example.mp4",
-  "question": "When Person 3 points at Person 4 between 2.5s and 4.0s, who are they making eye contact with?",
+  "question": "While Person 2 points directly at Person 1 between 2.0s and 5.0s, who is Person 2 making eye contact with?",
   "options": [
-   "A) Person 4",
-   "B) Person 1",
-   "C) No one",
-   "D) Person 2"
+   "A) Person 2",
+   "B) Person 0",
+   "C) Person 3",
+   "D) Person 1"
   ],
-  "answer": "C",
-  "answer_text": "No one",
+  "answer": "D",
+  "answer_text": "Person 1",
   "difficulty": "medium"
  },
  {
   "cat": "J3",
   "video": "J3_example.mp4",
-  "question": "While Person 1 points at Person 0 between 2.5s and 6.0s, who follows Person 1's gaze?",
+  "question": "At exactly 1.0s, Person 3 starts pointing at an object. Which people are involved in the group attention capture event that happens at this exact time?",
   "options": [
-   "A) Person 0",
-   "B) Person 2",
-   "C) Person 4",
-   "D) Person 3"
+   "A) Person 1 and Person 2",
+   "B) Person 1 and Person 3",
+   "C) Person 1, Person 2, and Person 3",
+   "D) Person 2 and Person 3"
   ],
   "answer": "C",
-  "answer_text": "Person 4",
+  "answer_text": "Person 1, Person 2, and Person 3",
   "difficulty": "hard"
  },
  {
   "cat": "J4",
   "video": "J4_example.mp4",
-  "question": "While Person 2 points at the cards between 3.0s and 5.5s, whose gaze does Person 4 follow?",
+  "question": "Between 5.5s and 7.5s, everyone in the group is looking at the same thing. Which person is simultaneously pointing at Person 2?",
   "options": [
    "A) Person 3",
-   "B) Person 2",
-   "C) Person 1",
-   "D) Person 5"
+   "B) Person 1",
+   "C) Person 2",
+   "D) Person 0"
   ],
-  "answer": "D",
-  "answer_text": "Person 5",
+  "answer": "A",
+  "answer_text": "Person 3",
   "difficulty": "hard"
  }
 ]
