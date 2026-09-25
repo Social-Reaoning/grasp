@@ -1,8 +1,6 @@
 <div align="center">
 
-# GRASP
-
-### Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions
+# GRASP: Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions
 
 **Advances in Neural Information Processing Systems (NeurIPS), 2026**
 
