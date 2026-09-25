@@ -176,7 +176,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 <section style="padding-top:8px">
   <div class="wrap">
     <h2>Explore GRASP-Bench</h2>
-    <p>One representative example per category. Play the clip, then reveal the answer. Overlaid boxes show person-consistent identities used to ground each question.</p>
+    <p>One representative example per category, drawn from the GRASP-Bench test split. Play the clip, then reveal the answer. Overlaid boxes show person-consistent identities used to ground each question; clips are shown at the 2&nbsp;fps rate models receive.</p>
     <div class="tabs" id="tabs">
       <button class="tab active" data-f="all">All (16)</button>
       <button class="tab" data-f="T">&#128064; Gaze &middot; T1&ndash;T6</button>
@@ -219,7 +219,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
       </tbody>
     </table>
     </div>
-    <div class="caption" style="margin-top:10px">Group columns are count-weighted category averages from Table&nbsp;1 of the paper. SGR also transfers zero-shot: it preserves or improves accuracy on MMSI, Online-MMSI, and TVQA+ (Table&nbsp;2).</div>
   </div>
 </section>
 
@@ -245,7 +244,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 <script>
 const MOD = c => c[0]==='T' ? 'gaze' : c[0]==='G' ? 'gesture' : 'joint';
 const MODLBL = {gaze:'Gaze', gesture:'Gesture', joint:'Joint'};
-const NAMES = {T1:'Gaze Target ID',T2:'Gaze Event Class.',T3:'Mutual Gaze',T4:'Gaze Following',T5:'Temporal Gaze',T6:'Group Attention',G1:'Gesture Recog.',G2:'Gesture Type',G3:'Gesture Temporal',G4:'Reciprocal Gesture',G5:'Gesture Freq.',G6:'Gesture Seq.',J1:'Gaze–Gesture Align.',J2:'Gaze Response',J3:'Eye Contact',J4:'Cross-Modal'};
+const NAMES = {T1:'Gaze Target ID',T2:'Gaze Event Class.',T3:'Mutual Gaze',T4:'Gaze Following',T5:'Temporal Gaze',T6:'Group Attention',G1:'Gesture Recog.',G2:'Gesture Type',G3:'Gesture Temporal',G4:'Reciprocal Gesture',G5:'Gesture Freq.',G6:'Gesture Seq.',J1:'Gaze–Gesture Align.',J2:'Gaze Resp. to Gest.',J3:'Eye Contact',J4:'Joint Person Dynamics'};
 let EX = [];
 fetch('static/examples.json').then(r=>r.json()).then(d=>{EX=d;render('all');});
 function esc(s){const t=document.createElement('span');t.textContent=s;return t.innerHTML;}
