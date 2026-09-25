@@ -191,7 +191,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
   <div class="wrap narrow">
     <h2>Social Grounding Reward (SGR)</h2>
     <p>Standard outcome-only RL rewards let models guess the right option while attending to the wrong people. <b>SGR</b> is a participant-level learning signal built directly on GRASP's structured social events: during GRPO post-training, the model is rewarded for reasoning about the <b>correct participants</b> involved in each gaze or gesture interaction, not just for the final answer.</p>
-    <p>Because every GRASP question is generated from an underlying social event graph, the ground-truth participants are known for free &mdash; the dataset and the reward are <b>coupled by design</b>. SGR-trained models improve substantially on GRASP-Bench while maintaining zero-shot performance on related social video QA benchmarks (MMSI, Online-MMSI, TVQA+), showing that grounded social reasoning does not come at the cost of general video QA ability.</p>
+    <p>Because every GRASP question is generated from an underlying social event graph, the ground-truth participants are known for free &mdash; the dataset and the reward are <b>coupled by design</b>. SGR improves performance on GRASP-Bench while maintaining zero-shot performance on related social video QA benchmarks (MMSI, Online-MMSI, TVQA+).</p>
   </div>
 </section>
 
