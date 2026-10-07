@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "socialmllm"
+version = "1.0.0"
+description = "GRASP: Learning to Ground Social Reasoning in Multi-Person Non-Verbal Interactions"
+readme = "README.md"
+requires-python = "==3.12.*"
+license = { text = "CC-BY-NC-4.0" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "torch==2.8.0",
+    "torchvision==0.23.0",
+    "transformers==5.3.0",
+    "tokenizers",
+    "accelerate",
+    "deepspeed>=0.18.3",
+    "flash-attn",
+    "triton>=3.4.0",
+    "numpy",
+    "decord",
+    "opencv-python-headless",
+    "pillow",
+    "pyyaml",
+    "tqdm",
+    "wandb",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.0",
+    "ruff>=0.14.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["socialmllm*"]
+
+[tool.uv.sources]
+flash-attn = { url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl" }
+transformers = { git = "https://github.com/huggingface/transformers", tag = "v5.3.0" }
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I"]
+fixable = ["ALL"]
+ignore = ["E203", "E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
