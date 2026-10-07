@@ -52,8 +52,6 @@ tar -xf data/GRASP/test/grasp_bench.tar -C data/grasp_bench
 
 ## Training
 
-Default hyperparameters follow the paper (SFT) and the released checkpoint (SGR). Override any of the variables at the top of each script via environment variables.
-
 ### 1. SFT
 
 ```bash
