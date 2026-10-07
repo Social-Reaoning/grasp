@@ -6,6 +6,8 @@
 
 [\[📜 Paper\]](https://arxiv.org/abs/2605.15764)
 [\[🌐 Project Page\]](https://social-reaoning.github.io/grasp/)
+[\[🤗 Dataset\]](https://huggingface.co/datasets/interlive/GRASP)
+[\[🤗 Model\]](https://huggingface.co/interlive/GRASP-Qwen3-VL-8B)
 
 Junho Kim<sup>1</sup>, Xu Cao<sup>1</sup>, Houze Yang<sup>1</sup>, Bikram Boote<sup>1</sup>, Ana Jojic<sup>1</sup>,
 Fiona Ryan<sup>2</sup>, Bolin Lai<sup>3</sup>, Sangmin Lee<sup>4</sup>, James M. Rehg<sup>1</sup>
@@ -21,10 +23,10 @@ Fiona Ryan<sup>2</sup>, Bolin Lai<sup>3</sup>, Sangmin Lee<sup>4</sup>, James M.
 ## TODO
 
 - [x] Paper release
-- [x] [Project page](https://social-reaoning.github.io/grasp/)
+- [x] Project page
 - [x] Training code (SFT + SGR)
-- [x] [GRASP dataset and GRASP-Bench](https://huggingface.co/datasets/interlive/GRASP)
-- [x] [Model weights (GRASP-Qwen3-VL-8B)](https://huggingface.co/interlive/GRASP-Qwen3-VL-8B)
+- [x] GRASP dataset and GRASP-Bench
+- [x] Model weights (GRASP-Qwen3-VL-8B)
 
 ## Setup
 
