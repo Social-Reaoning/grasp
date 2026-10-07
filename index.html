@@ -42,10 +42,6 @@ sup{font-size:11px;color:var(--muted)}
 .btns{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:9px 20px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .12s ease,background .12s ease}
 .btn:hover{background:#000;text-decoration:none;transform:translateY(-1px)}
-.btn.soft{background:var(--accent-soft);color:var(--accent)}
-.btn.soft:hover{background:#dbe6fb}
-.btn.disabled{background:var(--bg-soft);color:var(--muted);cursor:default;border:1px solid var(--line)}
-.btn.disabled:hover{transform:none}
 .teaser{padding:34px 0 8px}
 .figure{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:0 8px 28px rgba(20,30,60,.06)}
 .figure img{width:100%;height:auto;display:block;border-radius:8px}
@@ -187,8 +183,9 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
     <div class="btns">
       <a class="btn" href="https://arxiv.org/abs/2605.15764" target="_blank" rel="noopener">&#128196; arXiv</a>
       <a class="btn" href="https://github.com/Social-Reaoning/grasp" target="_blank" rel="noopener">&#128187; Code</a>
-      <a class="btn soft" href="https://huggingface.co/papers/2605.15764" target="_blank" rel="noopener">&#129303; HF Paper</a>
-      <span class="btn disabled">&#128230; Dataset (coming soon)</span>
+      <a class="btn" href="https://huggingface.co/datasets/interlive/GRASP" target="_blank" rel="noopener">&#129303; Dataset</a>
+      <a class="btn" href="https://huggingface.co/interlive/GRASP-Qwen3-VL-8B" target="_blank" rel="noopener">&#129303; Model</a>
+      <a class="btn" href="https://huggingface.co/papers/2605.15764" target="_blank" rel="noopener">&#129303; HF Paper</a>
     </div>
   </div>
 </header>
